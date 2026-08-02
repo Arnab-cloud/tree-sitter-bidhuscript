@@ -1,0 +1,18 @@
+==================
+Simple Assignments
+==================
+x = 42;
+msg = "hello";
+
+---
+
+(source_file
+  (assignment_statement
+    (identifier)
+    (expression
+      (int_literal)))
+  (assignment_statement
+    (identifier)
+    (expression
+        (interpreted_string_literal
+        (interpreted_string_literal_content)))))

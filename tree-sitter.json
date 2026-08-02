@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "bidhuscript",
+      "camelcase": "BidhuScript",
+      "title": "BidhuScript",
+      "scope": "source.bidhuscript",
+      "file-types": [
+        "bidhu"
+      ],
+      "injection-regex": "^bidhuscript$",
+      "class-name": "TreeSitterBidhuscript"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "This is a parser for BidhuScript",
+    "authors": [
+      {
+        "name": "Arnab Santra <arnabsantra248@gmail.com> (https://github.com/Arnab-cloud)",
+        "email": "arnabsantra248@gmail.com",
+        "url": "https://arnabsantra.dev"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/TheRealSoutrikDas/BidhuScrip",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "java": false,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}

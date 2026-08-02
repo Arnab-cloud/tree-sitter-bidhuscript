@@ -1,0 +1,52 @@
+==================
+Integer Literals (Dec, Hex, Oct, Bin)
+==================
+let int decVal = 1_000;
+let int hexVal = 0xFF_AA;
+let int octVal = 0o755;
+let int binVal = 0b1010_0101;
+
+---
+
+(source_file
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+        (int_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+        (int_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+        (int_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+        (int_literal))))
+
+==================
+String with Escapes
+==================
+let string quote = "Hello\nWorld\t\"Bidhu\"";
+
+---
+
+(source_file
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+          (interpreted_string_literal
+            (interpreted_string_literal_content)
+            (escape_sequence)
+            (interpreted_string_literal_content)
+            (escape_sequence)
+            (escape_sequence)
+            (interpreted_string_literal_content)
+            (escape_sequence)))))
