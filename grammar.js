@@ -1,6 +1,6 @@
 /**
  * @file This is a parser for BidhuScript
- * @author Arnab Santra <arnabsantra248@gmail.com> (https://github.com/Arnab-cloud) <arnabsantra248@gmail.com>
+ * @author Arnab Santra (https://github.com/Arnab-cloud) <arnabsantra248@gmail.com>
  * @license MIT
  */
 
