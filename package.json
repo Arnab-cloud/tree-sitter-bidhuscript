@@ -5,7 +5,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/therealsoutrikdas/bidhuscrip.git"
+    "url": "git+https://github.com/Arnab-cloud/tree-sitter-bidhuscript.git"
   },
   "funding": "",
   "license": "MIT",
