@@ -86,7 +86,7 @@ export default grammar({
   name: "bidhuscript",
 
   reserved: {
-    global: ($) => ["let", "spawn", "if", "else", "while", "return"],
+    global: ($) => ["let", "spawn", "if", "else", "while", "return", "forge"],
   },
 
   rules: {
@@ -105,7 +105,7 @@ export default grammar({
       ),
 
     _statement_ending_with_block: ($) =>
-      choice($.if_statement, $.while_statement),
+      choice($.if_statement, $.while_statement, $.forge_declaration),
 
     _statement: ($) =>
       choice(
@@ -142,6 +142,17 @@ export default grammar({
         ")",
         field("body", $.code_block),
       ),
+
+    forge_declaration: ($) =>
+      seq(
+        "forge",
+        field("name", $.identifier),
+        field("parameters", $.parameter_list),
+        optional(seq("~>", field("result", $._type))),
+        field("body", $.code_block),
+      ),
+
+    parameter_list: ($) => seq("(", commaSep(seq($._type, $.identifier)), ")"),
 
     skip_statement: (_) => "skip",
     snap_statement: (_) => "snap",
@@ -191,6 +202,7 @@ export default grammar({
         $.spwan_expression,
         $.unary_expression,
         $.binary_expression,
+        $.call_expression,
         $._string_literal,
         $.float_literal,
         $.int_literal,
@@ -213,8 +225,8 @@ export default grammar({
         [PREC.multiplicative, choice(...multiplicativeOperators)],
         [PREC.additive, choice(...additiveOperators)],
         [PREC.comparative, choice(...comparativeOperators)],
-        [PREC.and, "&&"],
-        [PREC.or, "||"],
+        [PREC.and, "and"],
+        [PREC.or, "or"],
       ];
 
       return choice(
@@ -232,6 +244,15 @@ export default grammar({
         ),
       );
     },
+
+    call_expression: ($) =>
+      seq(
+        field("name", $.identifier),
+        "(",
+        field("arguments", commaSep($._expression)),
+        ")",
+      ),
+
     _string_literal: ($) => choice($.interpreted_string_literal),
     char_literal: ($) =>
       seq(
@@ -279,3 +300,25 @@ export default grammar({
       ),
   },
 });
+
+/**
+ * Creates a rule to match one or more of the rules separated by a comma
+ *
+ * @param {Rule} rule
+ *
+ * @returns {SeqRule}
+ */
+function commaSep1(rule) {
+  return seq(rule, repeat(seq(",", rule)));
+}
+
+/**
+ * Creates a rule to optionally match one or more of the rules separated by a comma
+ *
+ * @param {Rule} rule
+ *
+ * @returns {ChoiceRule}
+ */
+function commaSep(rule) {
+  return optional(commaSep1(rule));
+}

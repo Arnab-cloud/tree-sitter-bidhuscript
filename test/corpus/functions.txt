@@ -1,0 +1,106 @@
+==================
+Forge Function Declaration with Return Type and Call
+==================
+forge add(int a, int b) ~> int {
+    return a + b;
+};
+
+let int sum = add(4, 5);
+
+---
+
+(source_file
+  (forge_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (simple_type)
+      (identifier)
+      (simple_type)
+      (identifier))
+    result: (simple_type)
+    body: (code_block
+      (statement_list
+        (return_statement
+          (binary_expression
+            left: (identifier)
+            right: (identifier))))))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (call_expression
+      name: (identifier)
+      arguments: (int_literal)
+      arguments: (int_literal))))
+
+==================
+Recursive Forge Function
+==================
+forge factorial(int n) ~> int {
+    if (n <= 1) {
+        return 1;
+    };
+    return n * factorial(n - 1);
+};
+
+---
+
+(source_file
+  (forge_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (simple_type)
+      (identifier))
+    result: (simple_type)
+    body: (code_block
+      (statement_list
+        (if_statement
+          condition: (parenthesized_boolean_expression
+            (boolean_expression
+              (identifier)
+              (int_literal)))
+          consequence: (code_block
+            (statement_list
+              (return_statement
+                (int_literal)))))
+        (return_statement
+          (binary_expression
+            left: (identifier)
+            right: (call_expression
+              name: (identifier)
+              arguments: (binary_expression
+                left: (identifier)
+                right: (int_literal)))))))))
+
+==================
+Forge Function Without Return Type (Void)
+==================
+forge banner(string title) {
+    print("====================");
+    print(title);
+    print("====================");
+};
+
+---
+
+(source_file
+  (forge_declaration
+    name: (identifier)
+    parameters: (parameter_list
+      (simple_type)
+      (identifier))
+    body: (code_block
+      (statement_list
+        (expression_statement
+          (call_expression
+            name: (identifier)
+            arguments: (interpreted_string_literal
+              (interpreted_string_literal_content))))
+        (expression_statement
+          (call_expression
+            name: (identifier)
+            arguments: (identifier)))
+        (expression_statement
+          (call_expression
+            name: (identifier)
+            arguments: (interpreted_string_literal
+              (interpreted_string_literal_content))))))))
