@@ -1,0 +1,142 @@
+==================
+Blueprint Definition with Attributes and Methods
+==================
+blueprint Point {
+    int x;
+    int y;
+
+    forge sum() ~> int {
+        return my.x + my.y;
+    }
+
+    forge scale(int k) {
+        my.x = my.x * k;
+        my.y = my.y * k;
+    }
+
+    forge describe() {
+        print("Point");
+    }
+}
+
+---
+
+(source_file
+  (blueprint_definition
+    name: (identifier)
+    body: (blueprint_body
+      (attribure_declaraton
+        type: (simple_type)
+        name: (identifier))
+      (attribure_declaraton
+        type: (simple_type)
+        name: (identifier))
+      (method_definiton
+        name: (identifier)
+        parameters: (parameter_list)
+        result: (simple_type)
+        body: (code_block
+          (statement_list
+            (return_statement
+              (binary_expression
+                left: (blueprint_attribute
+                  object: (identifier)
+                  attribute: (identifier))
+                right: (blueprint_attribute
+                  object: (identifier)
+                  attribute: (identifier)))))))
+      (method_definiton
+        name: (identifier)
+        parameters: (parameter_list
+          (simple_type)
+          (identifier))
+        body: (code_block
+          (statement_list
+            (assignment_statement
+              (blueprint_attribute
+                object: (identifier)
+                attribute: (identifier))
+              (binary_expression
+                left: (blueprint_attribute
+                  object: (identifier)
+                  attribute: (identifier))
+                right: (identifier)))
+            (assignment_statement
+              (blueprint_attribute
+                object: (identifier)
+                attribute: (identifier))
+              (binary_expression
+                left: (blueprint_attribute
+                  object: (identifier)
+                  attribute: (identifier))
+                right: (identifier))))))
+      (method_definiton
+        name: (identifier)
+        parameters: (parameter_list)
+        body: (code_block
+          (statement_list
+            (expression_statement
+              (call_expression
+                name: (identifier)
+                arguments: (interpreted_string_literal
+                  (interpreted_string_literal_content))))))))))
+
+==================
+Blueprint Instantiation and Member Access
+==================
+let Point p = spawn Point(3, 4);
+p.describe();
+
+p.scale(10);
+
+p.x = 7;
+print(p.x);
+print(p.sum());
+
+let Point origin = spawn Point;
+
+---
+
+(source_file
+  (let_declaration
+    type: (custom_type)
+    name: (identifier)
+    value: (spwan_expression
+      target: (call_expression
+        name: (identifier)
+        arguments: (int_literal)
+        arguments: (int_literal))))
+  (expression_statement
+    (blueprint_method
+      object: (identifier)
+      method_call: (call_expression
+        name: (identifier))))
+  (expression_statement
+    (blueprint_method
+      object: (identifier)
+      method_call: (call_expression
+        name: (identifier)
+        arguments: (int_literal))))
+  (assignment_statement
+    (blueprint_attribute
+      object: (identifier)
+      attribute: (identifier))
+    (int_literal))
+  (expression_statement
+    (call_expression
+      name: (identifier)
+      arguments: (blueprint_attribute
+        object: (identifier)
+        attribute: (identifier))))
+  (expression_statement
+    (call_expression
+      name: (identifier)
+      arguments: (blueprint_method
+        object: (identifier)
+        method_call: (call_expression
+          name: (identifier)))))
+  (let_declaration
+    type: (custom_type)
+    name: (identifier)
+    value: (spwan_expression
+      target: (identifier))))

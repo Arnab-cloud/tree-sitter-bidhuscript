@@ -96,6 +96,7 @@ export default grammar({
       "forge",
       "and",
       "or",
+      "blueprint",
     ],
   },
 
@@ -115,7 +116,12 @@ export default grammar({
       ),
 
     _statement_ending_with_block: ($) =>
-      choice($.if_statement, $.while_statement, $.forge_definition),
+      choice(
+        $.if_statement,
+        $.while_statement,
+        $.forge_definition,
+        $.blueprint_definition,
+      ),
 
     _statement: ($) =>
       choice(
@@ -164,6 +170,25 @@ export default grammar({
         field("body", $.code_block),
       ),
 
+    blueprint_definition: ($) =>
+      seq(
+        "blueprint",
+        field("name", $.identifier),
+        "{",
+        field("body", $.blueprint_body),
+        "}",
+      ),
+
+    blueprint_body: ($) =>
+      repeat1(
+        choice(
+          alias($.forge_definition, $.method_definiton),
+          $.attribure_declaraton,
+        ),
+      ),
+    attribure_declaraton: ($) =>
+      seq(field("type", $._type), field("name", $.identifier), terminator),
+
     parameter_list: ($) => seq("(", commaSep(seq($._type, $.identifier)), ")"),
 
     skip_statement: (_) => "skip",
@@ -179,7 +204,7 @@ export default grammar({
     expression_statement: ($) => $._expression,
     assignment_statement: ($) =>
       seq(
-        choice($.identifier, $.indexed_identifier),
+        choice($.identifier, $.indexed_identifier, $.blueprint_attribute),
         "=",
         prec.left(0, $._expression),
       ),
@@ -214,10 +239,12 @@ export default grammar({
         $.char_literal,
         $.array_literal,
         $.indexed_identifier,
+        $._blueprint_member,
       ),
 
     identifier: (_) => /[_\p{XID_Start}][_\p{XID_Continue}]*/v,
-    spwan_expression: ($) => seq("spawn", field("target", $.identifier)),
+    spwan_expression: ($) =>
+      seq("spawn", field("target", choice($.identifier, $.call_expression))),
     unary_expression: ($) =>
       prec(
         PREC.unary,
@@ -288,6 +315,18 @@ export default grammar({
         "]",
       ),
     indexed_identifier: ($) => seq($.identifier, "[", $._expression, "]"),
+
+    _blueprint_member: ($) => choice($.blueprint_attribute, $.blueprint_method),
+
+    blueprint_attribute: ($) =>
+      seq(field("object", $.identifier), ".", field("attribute", $.identifier)),
+
+    blueprint_method: ($) =>
+      seq(
+        field("object", $.identifier),
+        ".",
+        field("method_call", $.call_expression),
+      ),
 
     true: (_) => "true",
     false: (_) => "false",

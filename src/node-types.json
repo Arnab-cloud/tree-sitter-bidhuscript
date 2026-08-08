@@ -88,6 +88,14 @@
           "named": true
         },
         {
+          "type": "blueprint_attribute",
+          "named": true
+        },
+        {
+          "type": "blueprint_method",
+          "named": true
+        },
+        {
           "type": "bool_literal",
           "named": true
         },
@@ -131,6 +139,40 @@
     }
   },
   {
+    "type": "attribure_declaraton",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "custom_type",
+            "named": true
+          },
+          {
+            "type": "simple_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "binary_expression",
     "named": true,
     "fields": {
@@ -144,6 +186,14 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "blueprint_attribute",
+            "named": true
+          },
+          {
+            "type": "blueprint_method",
             "named": true
           },
           {
@@ -283,6 +333,14 @@
             "named": true
           },
           {
+            "type": "blueprint_attribute",
+            "named": true
+          },
+          {
+            "type": "blueprint_method",
+            "named": true
+          },
+          {
             "type": "bool_literal",
             "named": true
           },
@@ -327,6 +385,103 @@
     }
   },
   {
+    "type": "blueprint_attribute",
+    "named": true,
+    "fields": {
+      "attribute": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "object": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "blueprint_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribure_declaraton",
+          "named": true
+        },
+        {
+          "type": "method_definiton",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "blueprint_definition",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "blueprint_body",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "blueprint_method",
+    "named": true,
+    "fields": {
+      "method_call": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "call_expression",
+            "named": true
+          }
+        ]
+      },
+      "object": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "bool_literal",
     "named": true,
     "fields": {},
@@ -363,6 +518,14 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "blueprint_attribute",
+            "named": true
+          },
+          {
+            "type": "blueprint_method",
             "named": true
           },
           {
@@ -463,6 +626,14 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "blueprint_attribute",
+          "named": true
+        },
+        {
+          "type": "blueprint_method",
           "named": true
         },
         {
@@ -589,6 +760,14 @@
             "named": true
           },
           {
+            "type": "blueprint_attribute",
+            "named": true
+          },
+          {
+            "type": "blueprint_method",
+            "named": true
+          },
+          {
             "type": "bool_literal",
             "named": true
           },
@@ -656,6 +835,14 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "blueprint_attribute",
+          "named": true
+        },
+        {
+          "type": "blueprint_method",
           "named": true
         },
         {
@@ -769,6 +956,14 @@
             "named": true
           },
           {
+            "type": "blueprint_attribute",
+            "named": true
+          },
+          {
+            "type": "blueprint_method",
+            "named": true
+          },
+          {
             "type": "bool_literal",
             "named": true
           },
@@ -806,6 +1001,60 @@
           },
           {
             "type": "unary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "method_definiton",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "code_block",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameter_list",
+            "named": true
+          }
+        ]
+      },
+      "result": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "custom_type",
+            "named": true
+          },
+          {
+            "type": "simple_type",
             "named": true
           }
         ]
@@ -853,6 +1102,14 @@
         },
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "blueprint_attribute",
+          "named": true
+        },
+        {
+          "type": "blueprint_method",
           "named": true
         },
         {
@@ -917,6 +1174,10 @@
           "named": true
         },
         {
+          "type": "blueprint_definition",
+          "named": true
+        },
+        {
           "type": "expression_statement",
           "named": true
         },
@@ -960,6 +1221,10 @@
         "required": true,
         "types": [
           {
+            "type": "call_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -977,6 +1242,10 @@
       "types": [
         {
           "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "blueprint_definition",
           "named": true
         },
         {
@@ -1028,6 +1297,14 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "blueprint_attribute",
+            "named": true
+          },
+          {
+            "type": "blueprint_method",
             "named": true
           },
           {
@@ -1127,6 +1404,14 @@
             "named": true
           },
           {
+            "type": "blueprint_attribute",
+            "named": true
+          },
+          {
+            "type": "blueprint_method",
+            "named": true
+          },
+          {
             "type": "bool_literal",
             "named": true
           },
@@ -1178,6 +1463,14 @@
           },
           {
             "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "blueprint_attribute",
+            "named": true
+          },
+          {
+            "type": "blueprint_method",
             "named": true
           },
           {
@@ -1293,6 +1586,10 @@
     "named": false
   },
   {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": "/",
     "named": false
   },
@@ -1342,6 +1639,10 @@
   },
   {
     "type": "and",
+    "named": false
+  },
+  {
+    "type": "blueprint",
     "named": false
   },
   {

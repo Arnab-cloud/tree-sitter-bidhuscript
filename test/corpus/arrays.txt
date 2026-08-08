@@ -1,0 +1,42 @@
+==================
+Array Type Declarations and Literals
+==================
+let int[5] numbers = [1, 2, 3, 4, 5];
+let string[] names = ["alpha", "beta"];
+numbers[0] = 10;
+let int first = numbers[0];
+
+---
+
+(source_file
+  (let_declaration
+    type: (array_type_declarator
+      (simple_type)
+      size: (int_literal))
+    name: (identifier)
+    value: (array_literal
+      (int_literal)
+      (int_literal)
+      (int_literal)
+      (int_literal)
+      (int_literal)))
+  (let_declaration
+    type: (array_type
+      (simple_type))
+    name: (identifier)
+    value: (array_literal
+      (interpreted_string_literal
+        (interpreted_string_literal_content))
+      (interpreted_string_literal
+        (interpreted_string_literal_content))))
+  (assignment_statement
+    (indexed_identifier
+      (identifier)
+      (int_literal))
+    (int_literal))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (indexed_identifier
+      (identifier)
+      (int_literal))))

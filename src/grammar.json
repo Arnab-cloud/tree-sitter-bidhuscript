@@ -66,6 +66,10 @@
         {
           "type": "SYMBOL",
           "name": "forge_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "blueprint_definition"
         }
       ]
     },
@@ -326,6 +330,85 @@
         }
       ]
     },
+    "blueprint_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "blueprint"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "blueprint_body"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "blueprint_body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "forge_definition"
+            },
+            "named": true,
+            "value": "method_definiton"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "attribure_declaraton"
+          }
+        ]
+      }
+    },
+    "attribure_declaraton": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": ";"
+        }
+      ]
+    },
     "parameter_list": {
       "type": "SEQ",
       "members": [
@@ -465,6 +548,10 @@
             {
               "type": "SYMBOL",
               "name": "indexed_identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "blueprint_attribute"
             }
           ]
         },
@@ -696,6 +783,10 @@
         {
           "type": "SYMBOL",
           "name": "indexed_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_blueprint_member"
         }
       ]
     },
@@ -715,8 +806,17 @@
           "type": "FIELD",
           "name": "target",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "call_expression"
+              }
+            ]
           }
         }
       ]
@@ -2210,6 +2310,69 @@
         }
       ]
     },
+    "_blueprint_member": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "blueprint_attribute"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "blueprint_method"
+        }
+      ]
+    },
+    "blueprint_attribute": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "object",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "FIELD",
+          "name": "attribute",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "blueprint_method": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "object",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "FIELD",
+          "name": "method_call",
+          "content": {
+            "type": "SYMBOL",
+            "name": "call_expression"
+          }
+        }
+      ]
+    },
     "true": {
       "type": "STRING",
       "value": "true"
@@ -2348,6 +2511,10 @@
       {
         "type": "STRING",
         "value": "or"
+      },
+      {
+        "type": "STRING",
+        "value": "blueprint"
       }
     ]
   }
