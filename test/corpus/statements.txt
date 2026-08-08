@@ -10,9 +10,9 @@ if (flag == true) {
 
 (source_file
   (if_statement
-    condition: (boolean_expression
-      (identifier)
-      (bool_literal
+    condition: (binary_expression
+      left: (identifier)
+      right: (bool_literal
         (true)))
     consequence: (code_block
       (statement_list

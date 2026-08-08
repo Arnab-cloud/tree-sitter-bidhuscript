@@ -9,12 +9,11 @@ while (; i < 10; ; true) {
 
 (source_file
   (while_statement
-    condition: (boolean_expression
-      (identifier)
-      (int_literal))
-    dunno_field: (boolean_expression
-      (bool_literal
-        (true)))
+    condition: (binary_expression
+      left: (identifier)
+      right: (int_literal))
+    dunno_field: (bool_literal
+      (true))
     body: (code_block
       (statement_list
         (assignment_statement
@@ -39,30 +38,29 @@ while(let int i = 0; i < 10; i = i + 1; false) {
       type: (simple_type)
       name: (identifier)
       value: (int_literal))
-    condition: (boolean_expression
-      (identifier)
-      (int_literal))
+    condition: (binary_expression
+      left: (identifier)
+      right: (int_literal))
     update: (assignment_statement
       (identifier)
       (binary_expression
         left: (identifier)
         right: (int_literal)))
-    dunno_field: (boolean_expression
-      (bool_literal
-        (false)))
+    dunno_field: (bool_literal
+      (false))
     body: (code_block
       (statement_list
         (if_statement
-          condition: (boolean_expression
-            (identifier)
-            (int_literal))
+          condition: (binary_expression
+            left: (identifier)
+            right: (int_literal))
           consequence: (code_block
             (statement_list
               (skip_statement))))
         (if_statement
-          condition: (boolean_expression
-            (identifier)
-            (int_literal))
+          condition: (binary_expression
+            left: (identifier)
+            right: (int_literal))
           consequence: (code_block
             (statement_list
               (snap_statement))))))))
@@ -78,17 +76,16 @@ while(; counter < 3; counter = counter + 1; false) {
 
 (source_file
   (while_statement
-    condition: (boolean_expression
-      (identifier)
-      (int_literal))
+    condition: (binary_expression
+      left: (identifier)
+      right: (int_literal))
     update: (assignment_statement
       (identifier)
       (binary_expression
         left: (identifier)
         right: (int_literal)))
-    dunno_field: (boolean_expression
-      (bool_literal
-        (false)))
+    dunno_field: (bool_literal
+      (false))
     body: (code_block
       (statement_list
         (assignment_statement

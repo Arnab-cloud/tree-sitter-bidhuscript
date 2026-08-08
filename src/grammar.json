@@ -141,7 +141,7 @@
           "name": "condition",
           "content": {
             "type": "SYMBOL",
-            "name": "boolean_expression"
+            "name": "_expression"
           }
         },
         {
@@ -219,7 +219,7 @@
           "name": "condition",
           "content": {
             "type": "SYMBOL",
-            "name": "boolean_expression"
+            "name": "_expression"
           }
         },
         {
@@ -251,7 +251,7 @@
           "name": "dunno_field",
           "content": {
             "type": "SYMBOL",
-            "name": "boolean_expression"
+            "name": "_expression"
           }
         },
         {
@@ -439,79 +439,6 @@
           }
         ]
       }
-    },
-    "boolean_expression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PREC_LEFT",
-          "value": 1,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_expression"
-                  }
-                ]
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "=="
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "!="
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "<"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "<="
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ">"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ">="
-                  }
-                ]
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_expression"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "bool_literal"
-        }
-      ]
     },
     "expression_statement": {
       "type": "SYMBOL",

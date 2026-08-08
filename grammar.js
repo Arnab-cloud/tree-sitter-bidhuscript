@@ -134,7 +134,7 @@ export default grammar({
       seq(
         "if",
         "(",
-        field("condition", $.boolean_expression),
+        field("condition", $._expression),
         ")",
         field("consequence", $.code_block),
         optional(seq("else", field("alternative", $.code_block))),
@@ -146,11 +146,11 @@ export default grammar({
         "(",
         field("initializer", optional($.let_declaration)),
         terminator,
-        field("condition", $.boolean_expression),
+        field("condition", $._expression),
         terminator,
         field("update", optional($.assignment_statement)),
         terminator,
-        field("dunno_field", $.boolean_expression),
+        field("dunno_field", $._expression),
         ")",
         field("body", $.code_block),
       ),
@@ -169,27 +169,11 @@ export default grammar({
     skip_statement: (_) => "skip",
     snap_statement: (_) => "snap",
 
-    // parenthesized_boolean_expression: ($) =>
-    //   seq("(", $.boolean_expression, ")"),
-
     code_block: ($) => seq("{", $.statement_list, "}"),
 
     statement_list: ($) =>
       repeat1(
         choice(seq($._statement, terminator), $._statement_ending_with_block),
-      ),
-
-    boolean_expression: ($) =>
-      choice(
-        prec.left(
-          1,
-          seq(
-            choice($.identifier, $._expression),
-            choice(...comparativeOperators),
-            choice($.identifier, $._expression),
-          ),
-        ),
-        $.bool_literal,
       ),
 
     expression_statement: ($) => $._expression,
