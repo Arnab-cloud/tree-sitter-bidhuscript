@@ -10,7 +10,7 @@ let int sum = add(4, 5);
 ---
 
 (source_file
-  (forge_declaration
+  (forge_definition
     name: (identifier)
     parameters: (parameter_list
       (simple_type)
@@ -45,7 +45,7 @@ forge factorial(int n) ~> int {
 ---
 
 (source_file
-  (forge_declaration
+  (forge_definition
     name: (identifier)
     parameters: (parameter_list
       (simple_type)
@@ -82,7 +82,7 @@ forge banner(string title) {
 ---
 
 (source_file
-  (forge_declaration
+  (forge_definition
     name: (identifier)
     parameters: (parameter_list
       (simple_type)

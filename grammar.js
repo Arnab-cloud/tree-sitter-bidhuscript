@@ -115,7 +115,7 @@ export default grammar({
       ),
 
     _statement_ending_with_block: ($) =>
-      choice($.if_statement, $.while_statement, $.forge_declaration),
+      choice($.if_statement, $.while_statement, $.forge_definition),
 
     _statement: ($) =>
       choice(
@@ -155,7 +155,7 @@ export default grammar({
         field("body", $.code_block),
       ),
 
-    forge_declaration: ($) =>
+    forge_definition: ($) =>
       seq(
         "forge",
         field("name", $.identifier),
@@ -169,7 +169,7 @@ export default grammar({
     skip_statement: (_) => "skip",
     snap_statement: (_) => "snap",
 
-    code_block: ($) => seq("{", $.statement_list, "}"),
+    code_block: ($) => seq("{", optional($.statement_list), "}"),
 
     statement_list: ($) =>
       repeat1(
@@ -178,18 +178,26 @@ export default grammar({
 
     expression_statement: ($) => $._expression,
     assignment_statement: ($) =>
-      seq($.identifier, "=", prec.left(0, $._expression)),
+      seq(
+        choice($.identifier, $.indexed_identifier),
+        "=",
+        prec.left(0, $._expression),
+      ),
 
     let_declaration: ($) =>
       seq(
         "let",
-        field("type", $._type),
+        field("type", choice($._type, $.array_type_declarator)),
         field("name", $.identifier),
         optional(seq("=", field("value", $._expression))),
       ),
 
-    _type: ($) => choice($.simple_type, alias($.identifier, $.custom_type)),
+    _type: ($) =>
+      choice($.simple_type, alias($.identifier, $.custom_type), $.array_type),
+    array_type_declarator: ($) =>
+      seq($.simple_type, "[", field("size", $.int_literal), "]"),
     simple_type: ($) => choice("int", "float", "string", "char", "bool"),
+    array_type: ($) => seq($.simple_type, "[", "]"),
 
     expression_list: ($) => seq(repeat($._expression), $._expression),
     _expression: ($) =>
@@ -204,6 +212,8 @@ export default grammar({
         $.int_literal,
         $.bool_literal,
         $.char_literal,
+        $.array_literal,
+        $.indexed_identifier,
       ),
 
     identifier: (_) => /[_\p{XID_Start}][_\p{XID_Continue}]*/v,
@@ -212,7 +222,7 @@ export default grammar({
       prec(
         PREC.unary,
         seq(
-          field("operator", choice("+", "-", "!", "^", "*")),
+          field("operator", choice("+", "-", "not", "^", "*")),
           field("operand", $._expression),
         ),
       ),
@@ -262,6 +272,22 @@ export default grammar({
     float_literal: (_) => token(floatLiteral),
     int_literal: (_) => token(intLiteral),
     bool_literal: ($) => choice($.true, $.false),
+
+    array_literal: ($) =>
+      seq(
+        "[",
+        commaSep(
+          choice(
+            $._string_literal,
+            $.float_literal,
+            $.int_literal,
+            $.bool_literal,
+            $.char_literal,
+          ),
+        ),
+        "]",
+      ),
+    indexed_identifier: ($) => seq($.identifier, "[", $._expression, "]"),
 
     true: (_) => "true",
     false: (_) => "false",
