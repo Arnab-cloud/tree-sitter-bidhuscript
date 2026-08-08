@@ -25,13 +25,13 @@ blueprint Point {
   (blueprint_definition
     name: (identifier)
     body: (blueprint_body
-      (attribure_declaraton
+      (attribute_declaration
         type: (simple_type)
         name: (identifier))
-      (attribure_declaraton
+      (attribute_declaration
         type: (simple_type)
         name: (identifier))
-      (method_definiton
+      (method_definition
         name: (identifier)
         parameters: (parameter_list)
         result: (simple_type)
@@ -45,7 +45,7 @@ blueprint Point {
                 right: (blueprint_attribute
                   object: (identifier)
                   attribute: (identifier)))))))
-      (method_definiton
+      (method_definition
         name: (identifier)
         parameters: (parameter_list
           (simple_type)
@@ -70,7 +70,7 @@ blueprint Point {
                   object: (identifier)
                   attribute: (identifier))
                 right: (identifier))))))
-      (method_definiton
+      (method_definition
         name: (identifier)
         parameters: (parameter_list)
         body: (code_block

@@ -139,7 +139,7 @@
     }
   },
   {
-    "type": "attribure_declaraton",
+    "type": "attribute_declaration",
     "named": true,
     "fields": {
       "name": {
@@ -419,11 +419,11 @@
       "required": true,
       "types": [
         {
-          "type": "attribure_declaraton",
+          "type": "attribute_declaration",
           "named": true
         },
         {
-          "type": "method_definiton",
+          "type": "method_definition",
           "named": true
         }
       ]
@@ -1008,7 +1008,7 @@
     }
   },
   {
-    "type": "method_definiton",
+    "type": "method_definition",
     "named": true,
     "fields": {
       "body": {

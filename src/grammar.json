@@ -375,16 +375,16 @@
               "name": "forge_definition"
             },
             "named": true,
-            "value": "method_definiton"
+            "value": "method_definition"
           },
           {
             "type": "SYMBOL",
-            "name": "attribure_declaraton"
+            "name": "attribute_declaration"
           }
         ]
       }
     },
-    "attribure_declaraton": {
+    "attribute_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -2515,6 +2515,10 @@
       {
         "type": "STRING",
         "value": "blueprint"
+      },
+      {
+        "type": "STRING",
+        "value": "not"
       }
     ]
   }

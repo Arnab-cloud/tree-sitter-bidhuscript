@@ -97,6 +97,7 @@ export default grammar({
       "and",
       "or",
       "blueprint",
+      "not",
     ],
   },
 
@@ -182,11 +183,11 @@ export default grammar({
     blueprint_body: ($) =>
       repeat1(
         choice(
-          alias($.forge_definition, $.method_definiton),
-          $.attribure_declaraton,
+          alias($.forge_definition, $.method_definition),
+          $.attribute_declaration,
         ),
       ),
-    attribure_declaraton: ($) =>
+    attribute_declaration: ($) =>
       seq(field("type", $._type), field("name", $.identifier), terminator),
 
     parameter_list: ($) => seq("(", commaSep(seq($._type, $.identifier)), ")"),

@@ -89,7 +89,7 @@ enum ts_symbol_identifiers {
   sym_forge_definition = 67,
   sym_blueprint_definition = 68,
   sym_blueprint_body = 69,
-  sym_attribure_declaraton = 70,
+  sym_attribute_declaration = 70,
   sym_parameter_list = 71,
   sym_code_block = 72,
   sym_statement_list = 73,
@@ -121,7 +121,7 @@ enum ts_symbol_identifiers {
   aux_sym_array_literal_repeat1 = 99,
   aux_sym_interpreted_string_literal_repeat1 = 100,
   alias_sym_custom_type = 101,
-  alias_sym_method_definiton = 102,
+  alias_sym_method_definition = 102,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -195,7 +195,7 @@ static const char * const ts_symbol_names[] = {
   [sym_forge_definition] = "forge_definition",
   [sym_blueprint_definition] = "blueprint_definition",
   [sym_blueprint_body] = "blueprint_body",
-  [sym_attribure_declaraton] = "attribure_declaraton",
+  [sym_attribute_declaration] = "attribute_declaration",
   [sym_parameter_list] = "parameter_list",
   [sym_code_block] = "code_block",
   [sym_statement_list] = "statement_list",
@@ -227,7 +227,7 @@ static const char * const ts_symbol_names[] = {
   [aux_sym_array_literal_repeat1] = "array_literal_repeat1",
   [aux_sym_interpreted_string_literal_repeat1] = "interpreted_string_literal_repeat1",
   [alias_sym_custom_type] = "custom_type",
-  [alias_sym_method_definiton] = "method_definiton",
+  [alias_sym_method_definition] = "method_definition",
 };
 
 static const TSSymbol ts_symbol_map[] = {
@@ -301,7 +301,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_forge_definition] = sym_forge_definition,
   [sym_blueprint_definition] = sym_blueprint_definition,
   [sym_blueprint_body] = sym_blueprint_body,
-  [sym_attribure_declaraton] = sym_attribure_declaraton,
+  [sym_attribute_declaration] = sym_attribute_declaration,
   [sym_parameter_list] = sym_parameter_list,
   [sym_code_block] = sym_code_block,
   [sym_statement_list] = sym_statement_list,
@@ -333,7 +333,7 @@ static const TSSymbol ts_symbol_map[] = {
   [aux_sym_array_literal_repeat1] = aux_sym_array_literal_repeat1,
   [aux_sym_interpreted_string_literal_repeat1] = aux_sym_interpreted_string_literal_repeat1,
   [alias_sym_custom_type] = alias_sym_custom_type,
-  [alias_sym_method_definiton] = alias_sym_method_definiton,
+  [alias_sym_method_definition] = alias_sym_method_definition,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -617,7 +617,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_attribure_declaraton] = {
+  [sym_attribute_declaration] = {
     .visible = true,
     .named = true,
   },
@@ -745,7 +745,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [alias_sym_method_definiton] = {
+  [alias_sym_method_definition] = {
     .visible = true,
     .named = true,
   },
@@ -910,14 +910,14 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
     [0] = alias_sym_custom_type,
   },
   [10] = {
-    [0] = alias_sym_method_definiton,
+    [0] = alias_sym_method_definition,
   },
 };
 
 static const uint16_t ts_non_terminal_alias_map[] = {
   sym_forge_definition, 2,
     sym_forge_definition,
-    alias_sym_method_definiton,
+    alias_sym_method_definition,
   0,
 };
 
@@ -5476,7 +5476,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(111), 1,
       sym_simple_type,
     STATE(81), 2,
-      sym_attribure_declaraton,
+      sym_attribute_declaration,
       aux_sym_blueprint_body_repeat1,
     STATE(139), 2,
       sym__type,
@@ -5499,7 +5499,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(111), 1,
       sym_simple_type,
     STATE(81), 2,
-      sym_attribure_declaraton,
+      sym_attribute_declaration,
       aux_sym_blueprint_body_repeat1,
     STATE(139), 2,
       sym__type,
@@ -5522,7 +5522,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(141), 1,
       sym_blueprint_body,
     STATE(82), 2,
-      sym_attribure_declaraton,
+      sym_attribute_declaration,
       aux_sym_blueprint_body_repeat1,
     STATE(139), 2,
       sym__type,
@@ -6387,8 +6387,8 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [389] = {.entry = {.count = 1, .reusable = true}}, SHIFT(122),
   [391] = {.entry = {.count = 1, .reusable = false}}, SHIFT(122),
   [393] = {.entry = {.count = 1, .reusable = true}}, SHIFT(132),
-  [395] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_attribure_declaraton, 3, 0, 18),
-  [397] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_attribure_declaraton, 3, 0, 18),
+  [395] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_attribute_declaration, 3, 0, 18),
+  [397] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_attribute_declaration, 3, 0, 18),
   [399] = {.entry = {.count = 1, .reusable = false}}, REDUCE(aux_sym_blueprint_body_repeat1, 1, 0, 10),
   [401] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_blueprint_body_repeat1, 1, 0, 10),
   [403] = {.entry = {.count = 1, .reusable = true}}, SHIFT(24),

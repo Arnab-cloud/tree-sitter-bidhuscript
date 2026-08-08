@@ -121,7 +121,7 @@
 (let_declaration
   name: (identifier) @variable)
 
-(attribure_declaraton
+(attribute_declaration
   name: (identifier) @variable.member)
 
 (indexed_identifier
@@ -140,7 +140,7 @@
 (forge_definition
   name: (identifier) @function)
 
-(method_definiton
+(method_definition
   name: (identifier) @function.method)
 
 (blueprint_method
