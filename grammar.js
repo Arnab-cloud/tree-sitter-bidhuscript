@@ -81,7 +81,7 @@ export default grammar({
       choice(
         $._declaration,
         $._simple_statement,
-        // $.return_statement,
+        $.return_statement,
         $.if_statement,
         // $.while_statment,
         // $.skip_statement,
@@ -93,6 +93,8 @@ export default grammar({
 
     _simple_statement: ($) =>
       choice($.expression_statement, $.assignment_statement),
+
+    return_statement: ($) => seq("return", optional($.expression)),
 
     if_statement: ($) =>
       seq(
@@ -107,7 +109,7 @@ export default grammar({
 
     code_block: ($) => seq("{", $.statement_list, "}"),
 
-    statement_list: ($) => repeat1($._statement),
+    statement_list: ($) => repeat1(seq($._statement, terminator)),
 
     boolean_expression: ($) =>
       prec.left(
