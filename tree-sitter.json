@@ -6,9 +6,8 @@
       "camelcase": "BidhuScript",
       "title": "BidhuScript",
       "scope": "source.bidhuscript",
-      "file-types": [
-        "bidhu"
-      ],
+      "file-types": ["bidhu"],
+      "highlights": "queries/highlights.scm",
       "injection-regex": "^bidhuscript$",
       "class-name": "TreeSitterBidhuscript"
     }
