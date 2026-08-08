@@ -71,11 +71,10 @@ export default grammar({
   name: "bidhuscript",
 
   reserved: {
-    global: ($) => ["let", "spawn"],
+    global: ($) => ["let", "spawn", "if", "else"],
   },
 
   rules: {
-    // TODO: add the actual grammar rules
     source_file: ($) => repeat(seq($._statement, terminator)),
 
     _statement: ($) =>
@@ -83,7 +82,7 @@ export default grammar({
         $._declaration,
         $._simple_statement,
         // $.return_statement,
-        // $.if_statement,
+        $.if_statement,
         // $.while_statment,
         // $.skip_statement,
         // $.snap_statement,
@@ -95,8 +94,34 @@ export default grammar({
     _simple_statement: ($) =>
       choice($.expression_statement, $.assignment_statement),
 
+    if_statement: ($) =>
+      seq(
+        "if",
+        field("condition", $.parenthesized_boolean_expression),
+        field("consequence", $.code_block),
+        optional(seq("else", field("alternative", $.code_block))),
+      ),
+
+    parenthesized_boolean_expression: ($) =>
+      seq("(", $.boolean_expression, ")"),
+
+    code_block: ($) => seq("{", $.statement_list, "}"),
+
+    statement_list: ($) => repeat1($._statement),
+
+    boolean_expression: ($) =>
+      prec.left(
+        1,
+        seq(
+          choice($.identifier, $.expression),
+          choice("==", "<", ">", "<=", ">="),
+          choice($.identifier, $.expression),
+        ),
+      ),
+
     expression_statement: ($) => $.expression,
-    assignment_statement: ($) => seq($.identifier, "=", $.expression),
+    assignment_statement: ($) =>
+      seq($.identifier, "=", prec.left(0, $.expression)),
 
     let_declaration: ($) =>
       seq(
@@ -123,6 +148,7 @@ export default grammar({
 
     identifier: (_) => /[_\p{XID_Start}][_\p{XID_Continue}]*/v,
     _string_literal: ($) => choice($.interpreted_string_literal),
+    // char_literal: (_) => seq("'", /[^'\n\]/, "'"),
     float_literal: (_) => token(floatLiteral),
     int_literal: (_) => token(intLiteral),
     bool_literal: ($) => choice($.true, $.false),

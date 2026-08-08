@@ -3,10 +3,18 @@ Let Declaration without Initializer
 ==================
 let int count;
 let string name;
+let float value;
+let bool flag;
 
 ---
 
 (source_file
+  (let_declaration
+    type: (simple_type)
+    name: (identifier))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier))
   (let_declaration
     type: (simple_type)
     name: (identifier))
@@ -21,6 +29,8 @@ Let Declaration with Initializer
 let int score = 100;
 let bool isActive = true;
 let float pi = 3.14159;
+let string message = "Hello, BidhuScript!";
+let int processId = spawn;
 
 ---
 
@@ -40,4 +50,27 @@ let float pi = 3.14159;
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (float_literal))))
+        (float_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+        (interpreted_string_literal
+          (interpreted_string_literal_content))))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+        (identifier))))
+
+==================
+Expression Statement
+==================
+spawn;
+
+---
+
+(source_file
+  (expression_statement
+    (expression
+      (identifier))))

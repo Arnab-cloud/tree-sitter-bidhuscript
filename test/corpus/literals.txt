@@ -5,6 +5,11 @@ let int decVal = 1_000;
 let int hexVal = 0xFF_AA;
 let int octVal = 0o755;
 let int binVal = 0b1010_0101;
+let int zero = 0;
+let int largeHex = 0XDEAD_BEEF;
+let int largeOctal = 0O123_456;
+let int largeBinary = 0B1111_0000_1010;
+let int singleDigit = 5;
 
 ---
 
@@ -13,22 +18,47 @@ let int binVal = 0b1010_0101;
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (int_literal)))
+      (int_literal)))
   (let_declaration
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (int_literal)))
+      (int_literal)))
   (let_declaration
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (int_literal)))
+      (int_literal)))
   (let_declaration
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (int_literal))))
+      (int_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (int_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (int_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (int_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (int_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (int_literal))))
 
 ==================
 String with Escapes
@@ -42,11 +72,83 @@ let string quote = "Hello\nWorld\t\"Bidhu\"";
     type: (simple_type)
     name: (identifier)
     value: (expression
-          (interpreted_string_literal
-            (interpreted_string_literal_content)
-            (escape_sequence)
-            (interpreted_string_literal_content)
-            (escape_sequence)
-            (escape_sequence)
-            (interpreted_string_literal_content)
-            (escape_sequence)))))
+      (interpreted_string_literal
+        (interpreted_string_literal_content)
+        (escape_sequence)
+        (interpreted_string_literal_content)
+        (escape_sequence)
+        (escape_sequence)
+        (interpreted_string_literal_content)
+        (escape_sequence)))))
+
+==================
+Float Literals
+==================
+let float simpleFloat = 123.456;
+let float noDecimal = 123.;
+let float noInteger = .456;
+let float exponent = 1.2e-5;
+let float capitalExponent = 1.2E+5;
+let float hexFloat = 0x1.2p+3;
+let float hexFloatNoInteger = 0x.fp-1;
+
+---
+
+(source_file
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (float_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (float_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (float_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (float_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (float_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (float_literal)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (float_literal))))
+
+==================
+Boolean Literals
+==================
+let bool isTrue = true;
+let bool isFalse = false;
+
+---
+
+(source_file
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (bool_literal
+        (true))))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (expression
+      (bool_literal
+        (false)))))

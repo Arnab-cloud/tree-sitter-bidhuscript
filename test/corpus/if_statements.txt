@@ -1,0 +1,63 @@
+---
+name: If statements
+---
+
+# Simple if statement
+if (x == 5) {
+    let int y = 10;
+};
+
+# If-else statement
+if (a > b) {
+    let float result = a;
+} else {
+    let float result = b;
+};
+
+# Nested if statement
+if (cond1) {
+    if (cond2) {
+        let bool inner = true;
+    };
+} else {
+    let bool outer = false;
+};
+
+# Boolean expressions with various operators
+if (x < y) {
+    let int z = 1;
+};
+
+if (x >= y) {
+    let int z = 1;
+};
+
+if (x <= y) {
+    let int z = 1;
+};
+
+if (x == y) {
+    let int z = 1;
+};
+
+if (x > y) {
+    let int z = 1;
+};
+
+# Boolean expression with identifiers and literals
+if (myVar == 10) {
+    let bool isValid = true;
+};
+
+if (anotherVar < 3.14) {
+    let bool isLess = true;
+};
+
+if (someString == "hello") {
+    let bool isEqual = true;
+};
+
+# Boolean expression with expressions
+if (a + b == c - d) {
+    let bool complex = true;
+};

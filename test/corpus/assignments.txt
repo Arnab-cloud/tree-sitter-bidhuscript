@@ -3,6 +3,9 @@ Simple Assignments
 ==================
 x = 42;
 msg = "hello";
+pi_value = 3.14;
+is_active = true;
+process_id = spawn;
 
 ---
 
@@ -15,4 +18,17 @@ msg = "hello";
     (identifier)
     (expression
         (interpreted_string_literal
-        (interpreted_string_literal_content)))))
+        (interpreted_string_literal_content))))
+  (assignment_statement
+    (identifier)
+    (expression
+      (float_literal)))
+  (assignment_statement
+    (identifier)
+    (expression
+      (bool_literal
+        (true))))
+  (assignment_statement
+    (identifier)
+    (expression
+      (identifier))))
