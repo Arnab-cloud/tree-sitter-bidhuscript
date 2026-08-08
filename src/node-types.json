@@ -516,7 +516,7 @@
         "required": true,
         "types": [
           {
-            "type": "parenthesized_boolean_expression",
+            "type": "boolean_expression",
             "named": true
           }
         ]
@@ -646,21 +646,6 @@
         },
         {
           "type": "simple_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "parenthesized_boolean_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "boolean_expression",
           "named": true
         }
       ]

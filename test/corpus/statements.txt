@@ -10,11 +10,10 @@ if (flag == true) {
 
 (source_file
   (if_statement
-    condition: (parenthesized_boolean_expression
-      (boolean_expression
-        (identifier)
-        (bool_literal
-          (true))))
+    condition: (boolean_expression
+      (identifier)
+      (bool_literal
+        (true)))
     consequence: (code_block
       (statement_list
         (return_statement)

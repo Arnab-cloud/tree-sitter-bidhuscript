@@ -9,10 +9,9 @@ if (x == 5) {
 
 (source_file
   (if_statement
-    condition: (parenthesized_boolean_expression
-      (boolean_expression
-        (identifier)
-        (int_literal)))
+    condition: (boolean_expression
+      (identifier)
+      (int_literal))
     consequence: (code_block
       (statement_list
         (return_statement
@@ -31,10 +30,9 @@ if (count >= 10) {
 
 (source_file
   (if_statement
-    condition: (parenthesized_boolean_expression
-      (boolean_expression
-        (identifier)
-        (int_literal)))
+    condition: (boolean_expression
+      (identifier)
+      (int_literal))
     consequence: (code_block
       (statement_list
         (assignment_statement
@@ -63,10 +61,9 @@ if (a > b) {
 
 (source_file
   (if_statement
-    condition: (parenthesized_boolean_expression
-      (boolean_expression
-        (identifier)
-        (identifier)))
+    condition: (boolean_expression
+      (identifier)
+      (identifier))
     consequence: (code_block
       (statement_list
         (let_declaration
@@ -75,10 +72,9 @@ if (a > b) {
           value: (bool_literal
             (true))))))
   (if_statement
-    condition: (parenthesized_boolean_expression
-      (boolean_expression
-        (identifier)
-        (identifier)))
+    condition: (boolean_expression
+      (identifier)
+      (identifier))
     consequence: (code_block
       (statement_list
         (let_declaration
@@ -87,10 +83,9 @@ if (a > b) {
           value: (bool_literal
             (true))))))
   (if_statement
-    condition: (parenthesized_boolean_expression
-      (boolean_expression
-        (identifier)
-        (identifier)))
+    condition: (boolean_expression
+      (identifier)
+      (identifier))
     consequence: (code_block
       (statement_list
         (let_declaration

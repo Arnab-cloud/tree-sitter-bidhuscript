@@ -54,10 +54,9 @@ forge factorial(int n) ~> int {
     body: (code_block
       (statement_list
         (if_statement
-          condition: (parenthesized_boolean_expression
-            (boolean_expression
-              (identifier)
-              (int_literal)))
+          condition: (boolean_expression
+            (identifier)
+            (int_literal))
           consequence: (code_block
             (statement_list
               (return_statement

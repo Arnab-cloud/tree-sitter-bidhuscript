@@ -86,7 +86,17 @@ export default grammar({
   name: "bidhuscript",
 
   reserved: {
-    global: ($) => ["let", "spawn", "if", "else", "while", "return", "forge"],
+    global: ($) => [
+      "let",
+      "spawn",
+      "if",
+      "else",
+      "while",
+      "return",
+      "forge",
+      "and",
+      "or",
+    ],
   },
 
   rules: {
@@ -123,7 +133,9 @@ export default grammar({
     if_statement: ($) =>
       seq(
         "if",
-        field("condition", $.parenthesized_boolean_expression),
+        "(",
+        field("condition", $.boolean_expression),
+        ")",
         field("consequence", $.code_block),
         optional(seq("else", field("alternative", $.code_block))),
       ),
@@ -157,8 +169,8 @@ export default grammar({
     skip_statement: (_) => "skip",
     snap_statement: (_) => "snap",
 
-    parenthesized_boolean_expression: ($) =>
-      seq("(", $.boolean_expression, ")"),
+    // parenthesized_boolean_expression: ($) =>
+    //   seq("(", $.boolean_expression, ")"),
 
     code_block: ($) => seq("{", $.statement_list, "}"),
 

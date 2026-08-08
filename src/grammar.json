@@ -133,12 +133,20 @@
           "value": "if"
         },
         {
+          "type": "STRING",
+          "value": "("
+        },
+        {
           "type": "FIELD",
           "name": "condition",
           "content": {
             "type": "SYMBOL",
-            "name": "parenthesized_boolean_expression"
+            "name": "boolean_expression"
           }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         },
         {
           "type": "FIELD",
@@ -389,23 +397,6 @@
     "snap_statement": {
       "type": "STRING",
       "value": "snap"
-    },
-    "parenthesized_boolean_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "boolean_expression"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
     },
     "code_block": {
       "type": "SEQ",
@@ -2233,6 +2224,14 @@
       {
         "type": "STRING",
         "value": "forge"
+      },
+      {
+        "type": "STRING",
+        "value": "and"
+      },
+      {
+        "type": "STRING",
+        "value": "or"
       }
     ]
   }
