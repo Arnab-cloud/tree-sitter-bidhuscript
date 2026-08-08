@@ -12,24 +12,19 @@ process_id = spawn Hello;
 (source_file
   (assignment_statement
     (identifier)
-    (expression
-      (int_literal)))
+    (int_literal))
   (assignment_statement
     (identifier)
-    (expression
-      (interpreted_string_literal
-        (interpreted_string_literal_content))))
+    (interpreted_string_literal
+      (interpreted_string_literal_content)))
   (assignment_statement
     (identifier)
-    (expression
-      (float_literal)))
+    (float_literal))
   (assignment_statement
     (identifier)
-    (expression
-      (bool_literal
-        (true))))
+    (bool_literal
+      (true)))
   (assignment_statement
     (identifier)
-    (expression
-      (spwan_expression
-        (identifier)))))
+    (spwan_expression
+      (identifier))))

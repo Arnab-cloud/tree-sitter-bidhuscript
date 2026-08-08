@@ -12,13 +12,11 @@ if (x == 5) {
     condition: (parenthesized_boolean_expression
       (boolean_expression
         (identifier)
-        (expression
-          (int_literal))))
+        (int_literal)))
     consequence: (code_block
       (statement_list
         (return_statement
-          (expression
-            (identifier)))))))
+          (identifier))))))
 
 ==================
 If Else Statement with Assignments
@@ -36,20 +34,17 @@ if (count >= 10) {
     condition: (parenthesized_boolean_expression
       (boolean_expression
         (identifier)
-        (expression
-          (int_literal))))
+        (int_literal)))
     consequence: (code_block
       (statement_list
         (assignment_statement
           (identifier)
-          (expression
-            (int_literal)))))
+          (int_literal))))
     alternative: (code_block
       (statement_list
         (assignment_statement
           (identifier)
-          (expression
-            (identifier)))))))
+          (identifier))))))
 
 ==================
 Comparison Operators in Boolean Expressions
@@ -77,9 +72,8 @@ if (a > b) {
         (let_declaration
           type: (simple_type)
           name: (identifier)
-          value: (expression
-            (bool_literal
-              (true)))))))
+          value: (bool_literal
+            (true))))))
   (if_statement
     condition: (parenthesized_boolean_expression
       (boolean_expression
@@ -90,9 +84,8 @@ if (a > b) {
         (let_declaration
           type: (simple_type)
           name: (identifier)
-          value: (expression
-            (bool_literal
-              (true)))))))
+          value: (bool_literal
+            (true))))))
   (if_statement
     condition: (parenthesized_boolean_expression
       (boolean_expression
@@ -103,6 +96,5 @@ if (a > b) {
         (let_declaration
           type: (simple_type)
           name: (identifier)
-          value: (expression
-            (bool_literal
-              (true))))))))
+          value: (bool_literal
+            (true)))))))

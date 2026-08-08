@@ -13,16 +13,14 @@ if (flag == true) {
     condition: (parenthesized_boolean_expression
       (boolean_expression
         (identifier)
-        (expression
-          (bool_literal
-            (true)))))
+        (bool_literal
+          (true))))
     consequence: (code_block
       (statement_list
         (return_statement)
         (return_statement
-          (expression
-            (interpreted_string_literal
-              (interpreted_string_literal_content))))))))
+          (interpreted_string_literal
+            (interpreted_string_literal_content)))))))
 
 ==================
 Assignment and Expression Statements
@@ -35,9 +33,7 @@ spawn Hello;
 (source_file
   (assignment_statement
     (identifier)
-    (expression
-      (int_literal)))
+    (int_literal))
   (expression_statement
-    (expression
-      (spwan_expression
-        (identifier)))))
+    (spwan_expression
+      (identifier))))

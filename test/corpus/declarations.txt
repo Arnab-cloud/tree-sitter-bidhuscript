@@ -37,31 +37,26 @@ let Hello processId = spawn Hello;
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (bool_literal
-        (true))))
+    value: (bool_literal
+      (true)))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (float_literal)))
+    value: (float_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (interpreted_string_literal
-        (interpreted_string_literal_content))))
+    value: (interpreted_string_literal
+      (interpreted_string_literal_content)))
   (let_declaration
     type: (custom_type)
     name: (identifier)
-    value: (expression
-      (spwan_expression
-        target: (identifier)))))
+    value: (spwan_expression
+      target: (identifier))))
 
 ==================
 Expression Statement
@@ -72,6 +67,5 @@ spawn Hello;
 
 (source_file
   (expression_statement
-    (expression
-      (spwan_expression
-        (identifier)))))
+    (spwan_expression
+      (identifier))))

@@ -71,7 +71,7 @@ export default grammar({
   name: "bidhuscript",
 
   reserved: {
-    global: ($) => ["let", "spawn", "if", "else"],
+    global: ($) => ["let", "spawn", "if", "else", "while", "return"],
   },
 
   rules: {
@@ -83,9 +83,9 @@ export default grammar({
         $._simple_statement,
         $.return_statement,
         $.if_statement,
-        // $.while_statment,
-        // $.skip_statement,
-        // $.snap_statement,
+        $.while_statement,
+        $.skip_statement,
+        $.snap_statement,
         // $.empty_statement,
       ),
 
@@ -94,7 +94,7 @@ export default grammar({
     _simple_statement: ($) =>
       choice($.expression_statement, $.assignment_statement),
 
-    return_statement: ($) => seq("return", optional($.expression)),
+    return_statement: ($) => seq("return", optional($._expression)),
 
     if_statement: ($) =>
       seq(
@@ -104,6 +104,24 @@ export default grammar({
         optional(seq("else", field("alternative", $.code_block))),
       ),
 
+    while_statement: ($) =>
+      seq(
+        "while",
+        "(",
+        field("initializer", optional($.let_declaration)),
+        terminator,
+        field("condition", $.boolean_expression),
+        terminator,
+        field("update", optional($.assignment_statement)),
+        terminator,
+        field("dunno_field", $.boolean_expression),
+        ")",
+        field("body", $.code_block),
+      ),
+
+    skip_statement: (_) => "skip",
+    snap_statement: (_) => "snap",
+
     parenthesized_boolean_expression: ($) =>
       seq("(", $.boolean_expression, ")"),
 
@@ -112,32 +130,35 @@ export default grammar({
     statement_list: ($) => repeat1(seq($._statement, terminator)),
 
     boolean_expression: ($) =>
-      prec.left(
-        1,
-        seq(
-          choice($.identifier, $.expression),
-          choice("==", "<", ">", "<=", ">="),
-          choice($.identifier, $.expression),
+      choice(
+        prec.left(
+          1,
+          seq(
+            choice($.identifier, $._expression),
+            choice("==", "<", ">", "<=", ">="),
+            choice($.identifier, $._expression),
+          ),
         ),
+        $.bool_literal,
       ),
 
-    expression_statement: ($) => $.expression,
+    expression_statement: ($) => $._expression,
     assignment_statement: ($) =>
-      seq($.identifier, "=", prec.left(0, $.expression)),
+      seq($.identifier, "=", prec.left(0, $._expression)),
 
     let_declaration: ($) =>
       seq(
         "let",
         field("type", $._type),
         field("name", $.identifier),
-        optional(seq("=", field("value", $.expression))),
+        optional(seq("=", field("value", $._expression))),
       ),
 
     _type: ($) => choice($.simple_type, alias($.identifier, $.custom_type)),
     simple_type: ($) => choice("int", "float", "string", "char", "bool"),
 
-    expression_list: ($) => seq(repeat($.expression), $.expression),
-    expression: ($) =>
+    expression_list: ($) => seq(repeat($._expression), $._expression),
+    _expression: ($) =>
       choice(
         $.identifier,
         $.spwan_expression,

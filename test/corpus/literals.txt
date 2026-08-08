@@ -17,48 +17,39 @@ let int singleDigit = 5;
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal)))
+    value: (int_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (int_literal))))
+    value: (int_literal)))
 
 ==================
 String with Escapes
@@ -71,15 +62,14 @@ let string quote = "Hello\nWorld\t\"Bidhu\"";
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (interpreted_string_literal
-        (interpreted_string_literal_content)
-        (escape_sequence)
-        (interpreted_string_literal_content)
-        (escape_sequence)
-        (escape_sequence)
-        (interpreted_string_literal_content)
-        (escape_sequence)))))
+    value: (interpreted_string_literal
+      (interpreted_string_literal_content)
+      (escape_sequence)
+      (interpreted_string_literal_content)
+      (escape_sequence)
+      (escape_sequence)
+      (interpreted_string_literal_content)
+      (escape_sequence))))
 
 ==================
 Float Literals
@@ -98,38 +88,31 @@ let float hexFloatNoInteger = 0x.fp-1;
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (float_literal)))
+    value: (float_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (float_literal)))
+    value: (float_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (float_literal)))
+    value: (float_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (float_literal)))
+    value: (float_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (float_literal)))
+    value: (float_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (float_literal)))
+    value: (float_literal))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (float_literal))))
+    value: (float_literal)))
 
 ==================
 Boolean Literals
@@ -143,12 +126,10 @@ let bool isFalse = false;
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (bool_literal
-        (true))))
+    value: (bool_literal
+      (true)))
   (let_declaration
     type: (simple_type)
     name: (identifier)
-    value: (expression
-      (bool_literal
-        (false)))))
+    value: (bool_literal
+      (false))))
