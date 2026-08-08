@@ -98,6 +98,10 @@
         {
           "type": "interpreted_string_literal",
           "named": true
+        },
+        {
+          "type": "spwan_expression",
+          "named": true
         }
       ]
     }
@@ -191,6 +195,10 @@
         "required": true,
         "types": [
           {
+            "type": "custom_type",
+            "named": true
+          },
+          {
             "type": "simple_type",
             "named": true
           }
@@ -276,6 +284,22 @@
     }
   },
   {
+    "type": "spwan_expression",
+    "named": true,
+    "fields": {
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "statement_list",
     "named": true,
     "fields": {},
@@ -351,6 +375,10 @@
     "named": false
   },
   {
+    "type": "custom_type",
+    "named": true
+  },
+  {
     "type": "else",
     "named": false
   },
@@ -396,6 +424,10 @@
   },
   {
     "type": "return",
+    "named": false
+  },
+  {
+    "type": "spawn",
     "named": false
   },
   {

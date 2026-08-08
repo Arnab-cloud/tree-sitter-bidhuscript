@@ -22,7 +22,6 @@ let bool flag;
     type: (simple_type)
     name: (identifier)))
 
-
 ==================
 Let Declaration with Initializer
 ==================
@@ -30,7 +29,7 @@ let int score = 100;
 let bool isActive = true;
 let float pi = 3.14159;
 let string message = "Hello, BidhuScript!";
-let int processId = spawn;
+let Hello processId = spawn Hello;
 
 ---
 
@@ -39,38 +38,40 @@ let int processId = spawn;
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (int_literal)))
+      (int_literal)))
   (let_declaration
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (bool_literal
-          (true))))
+      (bool_literal
+        (true))))
   (let_declaration
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (float_literal)))
+      (float_literal)))
   (let_declaration
     type: (simple_type)
     name: (identifier)
     value: (expression
-        (interpreted_string_literal
-          (interpreted_string_literal_content))))
+      (interpreted_string_literal
+        (interpreted_string_literal_content))))
   (let_declaration
-    type: (simple_type)
+    type: (custom_type)
     name: (identifier)
     value: (expression
-        (identifier))))
+      (spwan_expression
+        target: (identifier)))))
 
 ==================
 Expression Statement
 ==================
-spawn;
+spawn Hello;
 
 ---
 
 (source_file
   (expression_statement
     (expression
-      (identifier))))
+      (spwan_expression
+        (identifier)))))

@@ -5,7 +5,7 @@ x = 42;
 msg = "hello";
 pi_value = 3.14;
 is_active = true;
-process_id = spawn;
+process_id = spawn Hello;
 
 ---
 
@@ -17,7 +17,7 @@ process_id = spawn;
   (assignment_statement
     (identifier)
     (expression
-        (interpreted_string_literal
+      (interpreted_string_literal
         (interpreted_string_literal_content))))
   (assignment_statement
     (identifier)
@@ -31,4 +31,5 @@ process_id = spawn;
   (assignment_statement
     (identifier)
     (expression
-      (identifier))))
+      (spwan_expression
+        (identifier)))))

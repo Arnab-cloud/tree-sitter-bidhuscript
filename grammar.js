@@ -133,14 +133,14 @@ export default grammar({
         optional(seq("=", field("value", $.expression))),
       ),
 
-    _type: ($) => choice($.simple_type),
+    _type: ($) => choice($.simple_type, alias($.identifier, $.custom_type)),
     simple_type: ($) => choice("int", "float", "string", "char", "bool"),
 
     expression_list: ($) => seq(repeat($.expression), $.expression),
     expression: ($) =>
       choice(
         $.identifier,
-        alias("spawn", $.identifier),
+        $.spwan_expression,
         $._string_literal,
         $.float_literal,
         $.int_literal,
@@ -149,6 +149,7 @@ export default grammar({
       ),
 
     identifier: (_) => /[_\p{XID_Start}][_\p{XID_Continue}]*/v,
+    spwan_expression: ($) => seq("spawn", field("target", $.identifier)),
     _string_literal: ($) => choice($.interpreted_string_literal),
     // char_literal: (_) => seq("'", /[^'\n\]/, "'"),
     float_literal: (_) => token(floatLiteral),

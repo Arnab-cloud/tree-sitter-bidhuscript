@@ -1,0 +1,43 @@
+==================
+Return Statements with and without Expression
+==================
+if (flag == true) {
+  return;
+  return "done";
+};
+
+---
+
+(source_file
+  (if_statement
+    condition: (parenthesized_boolean_expression
+      (boolean_expression
+        (identifier)
+        (expression
+          (bool_literal
+            (true)))))
+    consequence: (code_block
+      (statement_list
+        (return_statement)
+        (return_statement
+          (expression
+            (interpreted_string_literal
+              (interpreted_string_literal_content))))))))
+
+==================
+Assignment and Expression Statements
+==================
+result = 100;
+spawn Hello;
+
+---
+
+(source_file
+  (assignment_statement
+    (identifier)
+    (expression
+      (int_literal)))
+  (expression_statement
+    (expression
+      (spwan_expression
+        (identifier)))))
