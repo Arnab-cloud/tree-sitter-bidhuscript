@@ -15,7 +15,7 @@
                 "name": "_statement"
               },
               {
-                "type": "PATTERN",
+                "type": "STRING",
                 "value": ";"
               }
             ]
@@ -215,7 +215,7 @@
           }
         },
         {
-          "type": "PATTERN",
+          "type": "STRING",
           "value": ";"
         },
         {
@@ -227,7 +227,7 @@
           }
         },
         {
-          "type": "PATTERN",
+          "type": "STRING",
           "value": ";"
         },
         {
@@ -247,7 +247,7 @@
           }
         },
         {
-          "type": "PATTERN",
+          "type": "STRING",
           "value": ";"
         },
         {
@@ -404,7 +404,7 @@
           }
         },
         {
-          "type": "PATTERN",
+          "type": "STRING",
           "value": ";"
         }
       ]
@@ -519,7 +519,7 @@
                 "name": "_statement"
               },
               {
-                "type": "PATTERN",
+                "type": "STRING",
                 "value": ";"
               }
             ]

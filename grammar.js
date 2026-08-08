@@ -22,7 +22,7 @@ const multiplicativeOperators = ["*", "/", "%", "<<", ">>", "&", "&^"];
 const additiveOperators = ["+", "-", "|", "^"];
 const comparativeOperators = ["==", "!=", "<", "<=", ">", ">="];
 
-const terminator = /;/;
+const terminator = ";";
 
 const hexDigit = /[0-9a-fA-F]/;
 const octalDigit = /[0-7]/;
