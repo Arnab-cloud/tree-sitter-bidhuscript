@@ -111,14 +111,6 @@ export default grammar({
       choice(
         $._statement_ending_with_semicolon,
         $._statement_ending_with_block,
-        // $._declaration,
-        // $._simple_statement,
-        // $.return_statement,
-        // $.if_statement,
-        // $.while_statement,
-        // $.skip_statement,
-        // $.snap_statement,
-        // $.empty_statement,
       ),
 
     _declaration: ($) => choice($.let_declaration),
@@ -203,7 +195,7 @@ export default grammar({
         $.float_literal,
         $.int_literal,
         $.bool_literal,
-        // $.char_literal,
+        $.char_literal,
       ),
 
     identifier: (_) => /[_\p{XID_Start}][_\p{XID_Continue}]*/v,
@@ -241,7 +233,15 @@ export default grammar({
       );
     },
     _string_literal: ($) => choice($.interpreted_string_literal),
-    // char_literal: (_) => seq("'", /[^'\n\]/, "'"),
+    char_literal: ($) =>
+      seq(
+        "'",
+        choice(
+          /[^'\\]/, // 1. Any single character EXCEPT a quote or backslash
+          $.escape_sequence, // 2. A valid escape sequence
+        ),
+        "'",
+      ),
     float_literal: (_) => token(floatLiteral),
     int_literal: (_) => token(intLiteral),
     bool_literal: ($) => choice($.true, $.false),

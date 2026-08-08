@@ -133,3 +133,45 @@ let bool isFalse = false;
     name: (identifier)
     value: (bool_literal
       (false))))
+
+==================
+Character Literals
+==================
+let char letter = 'a';
+let char symbol = '#';
+let char newline = '\n';
+let char tab = '\t';
+let char hexChar = '\x41';
+let char unicodeChar = '\u0041';
+
+---
+
+(source_file
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (char_literal))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (char_literal))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (char_literal
+      (escape_sequence)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (char_literal
+      (escape_sequence)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (char_literal
+      (escape_sequence)))
+  (let_declaration
+    type: (simple_type)
+    name: (identifier)
+    value: (char_literal
+      (escape_sequence))))
