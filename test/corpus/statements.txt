@@ -4,7 +4,7 @@ Return Statements with and without Expression
 if (flag == true) {
   return;
   return "done";
-};
+}
 
 ---
 

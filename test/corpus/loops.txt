@@ -1,0 +1,98 @@
+=================
+Simple While
+=================
+while (; i < 10; ; true) {
+    i = i + 1;
+}
+
+---
+
+(source_file
+  (while_statement
+    condition: (boolean_expression
+      (identifier)
+      (int_literal))
+    dunno_field: (boolean_expression
+      (bool_literal
+        (true)))
+    body: (code_block
+      (statement_list
+        (assignment_statement
+          (identifier)
+          (binary_expression
+            left: (identifier)
+            right: (int_literal)))))))
+
+==================
+While Loop with Initializer, Skip, and Snap
+==================
+while(let int i = 0; i < 10; i = i + 1; false) {
+    if (i == 3) { skip; };
+    if (i == 7) { snap; };
+}
+
+---
+
+(source_file
+  (while_statement
+    initializer: (let_declaration
+      type: (simple_type)
+      name: (identifier)
+      value: (int_literal))
+    condition: (boolean_expression
+      (identifier)
+      (int_literal))
+    update: (assignment_statement
+      (identifier)
+      (binary_expression
+        left: (identifier)
+        right: (int_literal)))
+    dunno_field: (boolean_expression
+      (bool_literal
+        (false)))
+    body: (code_block
+      (statement_list
+        (if_statement
+          condition: (parenthesized_boolean_expression
+            (boolean_expression
+              (identifier)
+              (int_literal)))
+          consequence: (code_block
+            (statement_list
+              (skip_statement))))
+        (if_statement
+          condition: (parenthesized_boolean_expression
+            (boolean_expression
+              (identifier)
+              (int_literal)))
+          consequence: (code_block
+            (statement_list
+              (snap_statement))))))))
+
+==================
+While Loop with Empty Initializer
+==================
+while(; counter < 3; counter = counter + 1; false) {
+    result = counter;
+}
+
+---
+
+(source_file
+  (while_statement
+    condition: (boolean_expression
+      (identifier)
+      (int_literal))
+    update: (assignment_statement
+      (identifier)
+      (binary_expression
+        left: (identifier)
+        right: (int_literal)))
+    dunno_field: (boolean_expression
+      (bool_literal
+        (false)))
+    body: (code_block
+      (statement_list
+        (assignment_statement
+          (identifier)
+          (identifier))))))

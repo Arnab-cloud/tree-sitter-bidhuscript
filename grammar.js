@@ -7,6 +7,21 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
+const PREC = {
+  primary: 7,
+  unary: 6,
+  multiplicative: 5,
+  additive: 4,
+  comparative: 3,
+  and: 2,
+  or: 1,
+  composite_literal: -1,
+};
+
+const multiplicativeOperators = ["*", "/", "%", "<<", ">>", "&", "&^"];
+const additiveOperators = ["+", "-", "|", "^"];
+const comparativeOperators = ["==", "!=", "<", "<=", ">", ">="];
+
 const terminator = /;/;
 
 const hexDigit = /[0-9a-fA-F]/;
@@ -75,17 +90,34 @@ export default grammar({
   },
 
   rules: {
-    source_file: ($) => repeat(seq($._statement, terminator)),
+    source_file: ($) =>
+      repeat(
+        choice(seq($._statement, terminator), $._statement_ending_with_block),
+      ),
 
-    _statement: ($) =>
+    _statement_ending_with_semicolon: ($) =>
       choice(
         $._declaration,
         $._simple_statement,
         $.return_statement,
-        $.if_statement,
-        $.while_statement,
         $.skip_statement,
         $.snap_statement,
+      ),
+
+    _statement_ending_with_block: ($) =>
+      choice($.if_statement, $.while_statement),
+
+    _statement: ($) =>
+      choice(
+        $._statement_ending_with_semicolon,
+        $._statement_ending_with_block,
+        // $._declaration,
+        // $._simple_statement,
+        // $.return_statement,
+        // $.if_statement,
+        // $.while_statement,
+        // $.skip_statement,
+        // $.snap_statement,
         // $.empty_statement,
       ),
 
@@ -127,7 +159,10 @@ export default grammar({
 
     code_block: ($) => seq("{", $.statement_list, "}"),
 
-    statement_list: ($) => repeat1(seq($._statement, terminator)),
+    statement_list: ($) =>
+      repeat1(
+        choice(seq($._statement, terminator), $._statement_ending_with_block),
+      ),
 
     boolean_expression: ($) =>
       choice(
@@ -135,7 +170,7 @@ export default grammar({
           1,
           seq(
             choice($.identifier, $._expression),
-            choice("==", "<", ">", "<=", ">="),
+            choice(...comparativeOperators),
             choice($.identifier, $._expression),
           ),
         ),
@@ -162,6 +197,8 @@ export default grammar({
       choice(
         $.identifier,
         $.spwan_expression,
+        $.unary_expression,
+        $.binary_expression,
         $._string_literal,
         $.float_literal,
         $.int_literal,
@@ -171,6 +208,38 @@ export default grammar({
 
     identifier: (_) => /[_\p{XID_Start}][_\p{XID_Continue}]*/v,
     spwan_expression: ($) => seq("spawn", field("target", $.identifier)),
+    unary_expression: ($) =>
+      prec(
+        PREC.unary,
+        seq(
+          field("operator", choice("+", "-", "!", "^", "*")),
+          field("operand", $._expression),
+        ),
+      ),
+    binary_expression: ($) => {
+      const table = [
+        [PREC.multiplicative, choice(...multiplicativeOperators)],
+        [PREC.additive, choice(...additiveOperators)],
+        [PREC.comparative, choice(...comparativeOperators)],
+        [PREC.and, "&&"],
+        [PREC.or, "||"],
+      ];
+
+      return choice(
+        ...table.map(([precedence, operator]) =>
+          prec.left(
+            // @ts-ignore
+            precedence,
+            seq(
+              field("left", $._expression),
+              // @ts-ignore
+              field("operator", operator),
+              field("right", $._expression),
+            ),
+          ),
+        ),
+      );
+    },
     _string_literal: ($) => choice($.interpreted_string_literal),
     // char_literal: (_) => seq("'", /[^'\n\]/, "'"),
     float_literal: (_) => token(floatLiteral),
